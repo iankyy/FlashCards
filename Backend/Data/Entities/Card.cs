@@ -2,7 +2,7 @@
 
 namespace Backend.Data.Entities
 {
-    public class Card
+    public class Card : BaseEntity
     {
         [Key]
         public int Id { get; set; }
