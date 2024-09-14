@@ -1,4 +1,5 @@
 using Backend.Data;
+using Backend.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,11 @@ namespace Backend
 {
     public class Program
     {
+        private readonly IConfiguration _configuration;
+        public Program(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +28,9 @@ namespace Backend
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            builder.Services.AddScoped<PasswordHasherHelper>();
+
+            var configuration = builder.Configuration;
 
             builder.Services.AddAuthentication(cfg =>
             {
