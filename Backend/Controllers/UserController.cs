@@ -3,6 +3,7 @@ using Backend.Data;
 using Backend.Data.Entities;
 using Backend.Data.Entities.DTOs;
 using Backend.Helpers;
+using Backend.Helpers.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,10 @@ namespace Backend.Controllers
     public class UserController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly PasswordHasherHelper _passwordHelper;
+        private readonly IPasswordHasherHelper _passwordHelper;
         private readonly IMapper _mapper;
 
-        public UserController(ApplicationDbContext context, IMapper mapper, PasswordHasherHelper passwordHelper)
+        public UserController(ApplicationDbContext context, IMapper mapper, IPasswordHasherHelper passwordHelper)
         {
                 _context = context;
                 _mapper = mapper;

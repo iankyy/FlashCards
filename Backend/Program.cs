@@ -1,5 +1,6 @@
 using Backend.Data;
 using Backend.Helpers;
+using Backend.Helpers.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +29,7 @@ namespace Backend
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            builder.Services.AddScoped<PasswordHasherHelper>();
+            builder.Services.AddScoped<IPasswordHasherHelper, PasswordHasherHelper>();
 
             var configuration = builder.Configuration;
 

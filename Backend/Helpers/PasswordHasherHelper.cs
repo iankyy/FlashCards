@@ -1,8 +1,9 @@
-﻿using System.Security.Cryptography;
+﻿using Backend.Helpers.Interfaces;
+using System.Security.Cryptography;
 
 namespace Backend.Helpers
 {
-    public sealed class PasswordHasherHelper
+    public sealed class PasswordHasherHelper : IPasswordHasherHelper
     {
         private const int SaltSize = 16;
         private const int HashSize = 32;
