@@ -10,34 +10,16 @@ namespace Backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController(ApplicationDbContext context, IMapper mapper) : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-        private readonly IMapper _mapper;
-        public AuthController(ApplicationDbContext context, IMapper mapper)
-        {
-            _context = context;
-            _mapper = mapper;
+        private readonly ApplicationDbContext _context = context;
+        private readonly IMapper _mapper = mapper;
 
-        }
-
-        [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] UserDTO request)
-        {
-            if(request == null || string.IsNullOrEmpty(request.Username))
-            {
-                return BadRequest();
-            }
-
-            var newUser = _mapper.Map<User>(request);
-
-            _context.Users.Add(newUser);
-
-            await _context.SaveChangesAsync();
+        //[HttpPost("register")]
+        //public async Task<IActionResult> Register([FromBody] UserDTO request)
+        //{
             
-
-            return Ok(newUser);
-        }
+        //}
 
     }
 }

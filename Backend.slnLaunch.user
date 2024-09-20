@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "BackFront",
+    "Projects": [
+      {
+        "Path": "Backend\\Backend.csproj",
+        "Action": "StartWithoutDebugging"
+      },
+      {
+        "Path": "Frontend\\Frontend.csproj",
+        "Action": "StartWithoutDebugging"
+      }
+    ]
+  },
+  {
+    "Name": "New Profile (1)",
+    "Projects": []
+  }
+]

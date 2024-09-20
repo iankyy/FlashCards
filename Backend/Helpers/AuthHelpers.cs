@@ -8,13 +8,7 @@ namespace Backend.Infrastructure
 {
     internal sealed class AuthHelpers
     {
-        private readonly IConfiguration _configuration;
-        public AuthHelpers(IConfiguration configuration) 
-        {
-            _configuration = configuration;
-        }
-
-        public string GenerateJWTToken(User user)
+        public static string GenerateJWTToken(User user)
         {
 
             var claims = new List<Claim>
@@ -29,7 +23,7 @@ namespace Backend.Infrastructure
             expires: DateTime.UtcNow.AddDays(30),
             signingCredentials: new SigningCredentials(
             new SymmetricSecurityKey(
-               Encoding.UTF8.GetBytes(_configuration["ApplicationSettings:JWT_Secret"])
+               Encoding.UTF8.GetBytes(Key.Secret)
                 ),
             SecurityAlgorithms.HmacSha256Signature)
             );
