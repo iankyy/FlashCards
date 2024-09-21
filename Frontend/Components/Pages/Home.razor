@@ -23,11 +23,8 @@
 @if(!string.IsNullOrEmpty(responseMessage))
 {
     <p>@responseMessage</p>
-
 }
 
-@userModel.Username
-@userModel.Password
 @code {
     UserDTO userModel = new UserDTO();
     string responseMessage = string.Empty;

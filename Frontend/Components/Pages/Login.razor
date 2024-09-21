@@ -1,0 +1,60 @@
+﻿@page "/login"
+@using Backend.Data.Entities.DTOs
+@using Newtonsoft.Json
+@inject Blazored.LocalStorage.ILocalStorageService oLocalStorage
+@inject NavigationManager Navigation
+
+<h3>Login</h3>
+
+<EditForm Model="userModel" OnSubmit="LoginUser">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="username">Username</label>
+        <InputText id="username" class="form-control" @bind-Value="@userModel.Username" />
+    </div>
+
+    <div class="mb-3">
+        <label for="password">Password</label>
+        <InputText id="password" type="password" class="form-control" @bind-Value="@userModel.Password" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sign In</button>
+</EditForm>
+
+<button @onclick="@(() => Navigation.NavigateTo("/counter"))"> bora bill</button>
+
+@responseMessage
+
+@code {
+    [Inject] HttpClient Http { get; set; }
+    string responseMessage;
+
+    UserDTO userModel = new();
+
+    async Task LoginUser()
+    {
+        var response = await Http.PostAsJsonAsync("https://localhost:7131/api/User/login", userModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var responseBody = response.Content.ReadAsStringAsync();
+
+            var tokenObject = JsonConvert.DeserializeObject<dynamic>(await responseBody);
+
+            var token = tokenObject?.token;
+
+            if (token != null)
+            {
+                await oLocalStorage.SetItemAsync("token", token?.ToString());
+
+                responseMessage = token;
+            }
+
+        }
+    }
+
+
+
+}

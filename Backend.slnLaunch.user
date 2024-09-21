@@ -4,11 +4,11 @@
     "Projects": [
       {
         "Path": "Backend\\Backend.csproj",
-        "Action": "StartWithoutDebugging"
+        "Action": "Start"
       },
       {
         "Path": "Frontend\\Frontend.csproj",
-        "Action": "StartWithoutDebugging"
+        "Action": "Start"
       }
     ]
   },

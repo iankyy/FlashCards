@@ -1,4 +1,5 @@
 using Frontend.Components;
+using Blazored.LocalStorage; // Add this using directive
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,7 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddHttpClient();
-
+builder.Services.AddBlazoredLocalStorage(); // Change this line to use the correct method
 
 var app = builder.Build();
 
