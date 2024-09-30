@@ -57,7 +57,7 @@ namespace Backend
                 });
             });
             builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            builder.Services.AddScoped<IPasswordHasherHelper, PasswordHasherHelper>();
+            //builder.Services.AddScoped<IPasswordHasherHelper, PasswordHasherHelper>();
 
             var configuration = builder.Configuration;
 
